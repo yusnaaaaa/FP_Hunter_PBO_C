@@ -13,7 +13,7 @@ public class OBJ_Pet extends SuperObject{
 		
 		name = "Pet";
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/object/sprite_wnb0.png"));
+			image = ImageIO.read(getClass().getResourceAsStream("/object/cat.png"));
 			uTool.scaleImage(image, gp.tileSize, gp.tileSize);
 		}catch (IOException e) {
 			e.printStackTrace();
