@@ -28,8 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//world settings
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
-//  public final int worldWidth = tileSize * maxWorldCol;
-//	public final int worldHeight = tileSize * maxScreenRow;
+
 	
 	
 	
@@ -50,8 +49,8 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public Player player = new Player(this, keyH);
 	
-	public SuperObject obj[] = new SuperObject[20];
-	public Entity monster[] = new Entity[20];
+	public SuperObject obj[] = new SuperObject[50];
+	public Entity monster[] = new Entity[50];
 	
 	//GAME STATE
 	public int gameState;
@@ -60,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int pauseState = 2;
 	public final int storyGame = 3;
 	public final int gameOver = 4;
-	public final int quizGame = 5;
+
 	
 
 	public GamePanel() {
@@ -88,36 +87,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	
 	@Override
-	 // public void run() {
-	//	double drawInterval = 1000000000/FPS; //0.1666 s
-	//	double nextDrawTime = System.nanoTime() + drawInterval;
-	//	
-	//	while(gameThread != null) {
-	//		update();
-	//		
-	//		repaint();
-	//		
-	//	
-	//		try {
-	//			double remainingTime = nextDrawTime - System.nanoTime();
-	//			remainingTime = remainingTime/1000000;
-	//			
-	//			if(remainingTime < 0) {
-	//				remainingTime = 0;
-	//			}
-	//			
-	//			Thread.sleep((long) remainingTime);
-	//			
-	//			nextDrawTime += drawInterval;
-	//			
-	//		} catch (InterruptedException e) {
-	//			//  Auto-generated catch block
-	//			e.printStackTrace();
-	//		}
-			
-	//	}
-		
-	//}
+	 
 	
 	public void run() {
 		
@@ -172,12 +142,10 @@ public class GamePanel extends JPanel implements Runnable{
 			//nothing
 		}
 		if(gameState == gameOver) {
-
+			stopMusic();
 			
 		}
-		if(gameState == quizGame) {
-			
-		}
+		
 		
 		
 		
