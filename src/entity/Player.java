@@ -1,6 +1,8 @@
 package entity;
 
 import java.awt.Color;
+
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -47,20 +49,22 @@ public class Player extends Entity {
 		worldX = gp.tileSize * 23;
 		worldY = gp.tileSize * 21;
 		speed = 4;
-		direction = "down";
+	   	direction = "down";
+	   	
 		
 	}
 	public void getPlayerImage() {
 		try {
 			
-			up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
-			up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
+			up1 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/belakang_kanan.png"));
+			up2 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/belakang_kiri.png"));
+			down1 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/depan_kanan.png"));
+			down2 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/depan_kiri.png"));
+			left1 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/langkah_pendek_kiri.png"));
+			left2 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/langkah_panjang_kiri.png"));
+			right1 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/langkah pendek kanan.png"));
+			right2 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/langkah_panjang_kanan.png"));
+			logo = ImageIO.read(getClass().getResourceAsStream("/asset1/logobig2.png"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -129,7 +133,7 @@ public class Player extends Entity {
 				gp.playSE(1);
 				hasKey++;
 				gp.obj[i] = null;
-				gp.ui.showMessage("You got a key");
+				gp.ui.showMessage("Key Found!");
 				
 				break;
 			case "Door" :
@@ -137,23 +141,27 @@ public class Player extends Entity {
 					gp.playSE(3);
 					gp.obj[i] = null;
 					hasKey--;
-					gp.ui.showMessage("You opened the door!");
+					gp.ui.showMessage("Berhasil buka pintu");
 				}
 				else {
-					gp.ui.showMessage("You need a key!");
+					gp.ui.showMessage("Cari dulu kuncinya!");
 				}
-				System.out.println("Key:"+hasKey);
 				break;
 			case "Boots" :
 				gp.playSE(2);
 				speed += 4;
 				gp.obj[i] = null;
-				gp.ui.showMessage("Speed up!");
+				gp.ui.showMessage("Speed Up!");
 				break;
-			case "Chest":
+			case "Chest" :
 				gp.ui.gameFinished = true;
 				gp.stopMusic();
 				gp.playSE(4);
+				break;
+			case "Pet" :
+				gp.playSE(2);
+				gp.obj[i] = null;
+				gp.ui.showMessage("yeay you found the pet!");
 				break;
 			}
 		}
