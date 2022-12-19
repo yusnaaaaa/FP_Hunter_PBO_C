@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int maxScreenCol = 16;//16
 	public final int maxScreenRow = 12;//12
 	public final int screenWidth = tileSize * maxScreenCol;
-	public final int screenHeight = tileSize *maxScreenRow;
+	public final int screenHeight = tileSize *maxScreenRow;    
 	
 	//world settings
 	public final int maxWorldCol = 50;
@@ -206,6 +206,27 @@ public class GamePanel extends JPanel implements Runnable{
 		g2.dispose();
 		
 	}
+	  
+	public void retry() {
+		
+		player.setDefaultPosition();
+		player.restoreLife();
+		aSetter.setMonster();
+	//	ui.playTime +=(double)1/60;
+		
+	}
+	
+	public void restart() {
+		
+		player.setDefaultValues();
+		player.setDefaultPosition();
+		player.restoreLife();
+		aSetter.setObject();
+		aSetter.setMonster();
+	//	ui.playTime +=(double)1/60;
+	}
+	
+	
 	
 	public void playMusic(int i) {
 		

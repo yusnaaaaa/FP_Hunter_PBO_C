@@ -131,7 +131,6 @@ public class UI {
 			
 		}
 		
-		
 		this.g2 = g2;
 		
 		g2.setFont(arial_40);
@@ -261,7 +260,7 @@ public class UI {
 	
 		int y = gp.screenHeight/2;
 		
-		g2.drawString(text,x,y);
+		g2.drawString(text, x, y);
 	}
 	public int getXforCenteredText(String text) {
 

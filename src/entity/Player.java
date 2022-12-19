@@ -60,6 +60,19 @@ public class Player extends Entity {
 	   	life = maxLife;
 		
 	}
+	
+	public void setDefaultPosition() {
+		worldX = gp.tileSize * 23;
+		worldY = gp.tileSize * 21;
+		direction = "down";
+	}
+	
+	public void restoreLife() {
+		life = maxLife;
+	}
+	
+	
+	
 	public void getPlayerImage() {
 		
 		up1 = setup("/img/belakang_kanan");
