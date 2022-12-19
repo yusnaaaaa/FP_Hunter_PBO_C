@@ -4,6 +4,7 @@ import entity.Monster;
 import object.OBJ_Boots;
 import object.OBJ_Chest;
 import object.OBJ_Door;
+import object.OBJ_DoorFinish;
 import object.OBJ_Key;
 import object.OBJ_LifeUp;
 import object.OBJ_Pet;
@@ -29,7 +30,7 @@ public class AssetSetter {
 		gp.obj[2].worldX = 38 * gp.tileSize;
 		gp.obj[2].worldY = 42 * gp.tileSize;
 		
-		gp.obj[3] = new OBJ_Door(gp);//
+		gp.obj[3] = new OBJ_DoorFinish(gp);//
 		gp.obj[3].worldX = 10 * gp.tileSize;
 		gp.obj[3].worldY = 11 * gp.tileSize;
 		
@@ -87,7 +88,7 @@ public class AssetSetter {
 		
 		gp.obj[17] = new OBJ_Key(gp);//
 		gp.obj[17].worldX = 5 * gp.tileSize;
-		gp.obj[17].worldY = 11 * gp.tileSize;
+		gp.obj[17].worldY = 45 * gp.tileSize;
 		
 		gp.obj[18] = new OBJ_Door(gp);//
 		gp.obj[18].worldX = 3 * gp.tileSize;
@@ -140,6 +141,8 @@ public class AssetSetter {
 		gp.obj[30] = new OBJ_Pet(gp);
 		gp.obj[30].worldX = 7 * gp.tileSize;//s
 		gp.obj[30].worldY = 4 * gp.tileSize;
+		
+		
 
 	
 	}
