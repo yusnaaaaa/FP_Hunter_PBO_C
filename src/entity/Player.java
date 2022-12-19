@@ -52,11 +52,11 @@ public class Player extends Entity {
 		
 		worldX = gp.tileSize * 23;
 		worldY = gp.tileSize * 21;
-		speed = 4;
+		speed = 5;
 	   	direction = "down";
 	   	
 	   	//Player status nyawa
-	   	maxLife = 6;
+	   	maxLife = 8;
 	   	life = maxLife;
 		
 	}
@@ -175,7 +175,6 @@ public class Player extends Entity {
 					gp.ui.showMessage("Berhasil buka pintu");
 				}
 				else {
-					ContactObject(i);
 					gp.ui.showMessage("Cari dulu kuncinya!");
 				}
 				break;
