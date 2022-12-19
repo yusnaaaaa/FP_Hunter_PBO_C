@@ -37,7 +37,9 @@ public class TileManager {
 			
 			setup(0,"jalan 1", false);
 			setup(1,"rumput" , true);
-			setup(2,"grass01", false);
+			setup(2,"rumput", false);
+			setup(3,"pagar rumput", true);
+			
 						
 		
 	}
