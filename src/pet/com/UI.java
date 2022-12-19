@@ -152,7 +152,7 @@ public class UI {
 			drawStoryGame();
 		}
 		if(gp.gameState == gp.gameOver) {
-			gp.stopMusic();
+		//	gp.stopMusic();
 			drawGameOver();
 		}
 		
@@ -222,16 +222,11 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
 		
 		
-	//	try {
-	//		image1 = ImageIO.read(getClass().getResourceAsStream("/asset1/Start.png"));
-	//	} catch (Exception e) {
-	//		e.printStackTrace();
-	//	}
 		
 		text = "PLAY GAME";
 		x = getXforCenteredText(text);
 		y += gp.tileSize*3.5;
-	//	g2.drawImage(image1, x-10, y-10, null);
+	
 		g2.drawString(text, x, y);
 		if(commandNum == 0) {
 			g2.drawString(">", x-gp.tileSize, y);
@@ -292,18 +287,6 @@ public class UI {
 		g2.setColor(Color.white);
 		g2.drawString(text, x, y);
 		
-//		Scanner scanner = new Scanner(System.in);
-//		while(scanner.hasNext()) {
-//			int answer = scanner.nextInt();
-//			
-//			System.out.println("answer : " +answer);
-//			
-//			text = "answer :"+answer;
-//			
-//			g2.drawString(text, 300, 300);
-//			
-//			
-//		}
 		
 		
 		//STORY
@@ -319,12 +302,6 @@ public class UI {
 		y += gp.tileSize*2;
 		g2.drawImage(imagestory, x-250, y-20, gp.tileSize*12, gp.tileSize*6, null);
 		
-//		g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
-//		
-//		text = "Sebuah game java 2 dimensi yang boleh dibilang secara tampilan mirip dengan RPG";
-//		x = 50;
-//		y = 300;
-//		g2.drawString(text, x, y);
 		
 	}
 	
@@ -346,26 +323,15 @@ public class UI {
 		
 		g2.setColor(Color.white);
 		g2.drawString(text, x, y);
-		
-		//image
-	//	x = gp.screenWidth/2 - (gp.tileSize*2)/2;
-	//	y += gp.tileSize*2;
-	//	g2.drawImage(gp.player.logo, x-75, y-100, gp.tileSize*5, gp.tileSize*5, null);
-		
+				
 		//menu
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
 		
-		
-	//	try {
-	//		image1 = ImageIO.read(getClass().getResourceAsStream("/asset1/Start.png"));
-	//	} catch (Exception e) {
-	//		e.printStackTrace();
-	//	}
-		
+				
 		text = "NEW GAME";
 		x = getXforCenteredText(text);
 		y += gp.tileSize*3.5;
-	//	g2.drawImage(image1, x-10, y-10, null);
+		
 		g2.drawString(text, x, y);
 		if(commandNum == 0) {
 			g2.drawString(">", x-gp.tileSize, y);
