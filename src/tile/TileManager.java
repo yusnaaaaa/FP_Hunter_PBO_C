@@ -35,10 +35,10 @@ public class TileManager {
 	
 	public void getTileImage() {
 			
-			setup(0,"jalan 1", false);
-			setup(1,"rumput" , true);
+			setup(0,"jalan new", false);
+			setup(1,"new rumput" , true);
 			setup(2,"rumput", false);
-			setup(3,"pagar rumput", true);
+			setup(3,"pagar rumput new", true);
 			
 						
 		
