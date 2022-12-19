@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	
 	public Player player = new Player(this, keyH);
+	
 	public SuperObject obj[] = new SuperObject[20];
 	
 	//GAME STATE
@@ -56,6 +58,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int playState = 1;
 	public final int pauseState = 2;
 	public final int storyGame = 3;
+	public final int gameOver = 4;
+	public final int quizGame = 5;
 	
 
 	public GamePanel() {
@@ -79,6 +83,7 @@ public class GamePanel extends JPanel implements Runnable{
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
+	
 	
 	@Override
 	 // public void run() {
@@ -152,9 +157,16 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		if(gameState == playState) {
 			player.update();
+			
 		}
 		if(gameState == pauseState) {
 			//nothing
+		}
+		if(gameState == gameOver) {
+			
+		}
+		if(gameState == quizGame) {
+			
 		}
 		
 		
@@ -183,6 +195,7 @@ public class GamePanel extends JPanel implements Runnable{
 			
 			//player
 			player.draw(g2);
+	
 			
 			//ui
 			ui.draw(g2);
