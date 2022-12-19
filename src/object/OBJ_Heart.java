@@ -10,7 +10,6 @@ public class OBJ_Heart extends SuperObject{
 	
 	public OBJ_Heart () {
 		
-		
 		name = "Heart";
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream("/object/heart_full.png"));
