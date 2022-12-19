@@ -206,6 +206,27 @@ public class GamePanel extends JPanel implements Runnable{
 		g2.dispose();
 		
 	}
+	  
+	public void retry() {
+		
+		player.setDefaultPosition();
+		player.restoreLife();
+		aSetter.setMonster();
+	//	ui.playTime +=(double)1/60;
+		
+	}
+	
+	public void restart() {
+		
+		player.setDefaultValues();
+		player.setDefaultPosition();
+		player.restoreLife();
+		aSetter.setObject();
+		aSetter.setMonster();
+	//	ui.playTime +=(double)1/60;
+	}
+	
+	
 	
 	public void playMusic(int i) {
 		

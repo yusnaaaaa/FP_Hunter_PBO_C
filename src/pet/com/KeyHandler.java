@@ -28,14 +28,14 @@ public class KeyHandler implements KeyListener {
 		if(gp.gameState == gp.titleState) {
 
 			
-			if(code == KeyEvent.VK_W) {
+			if(code == KeyEvent.VK_UP) {
 				gp.ui.commandNum--;
 				if(gp.ui.commandNum < 0) {
 					gp.ui.commandNum = 2;
 				}
 			}
 			
-			if(code == KeyEvent.VK_S) {
+			if(code == KeyEvent.VK_DOWN) {
 				gp.ui.commandNum++;
 				if(gp.ui.commandNum > 2) {
 					gp.ui.commandNum = 0;
@@ -61,19 +61,19 @@ public class KeyHandler implements KeyListener {
 		
 		//playy state
 		if(gp.gameState == gp.playState) {
-			if(code == KeyEvent.VK_W) {
+			if(code == KeyEvent.VK_UP) {
 				upPressed = true;
 			}
 			
-			if(code == KeyEvent.VK_S) {
+			if(code == KeyEvent.VK_DOWN) {
 				downPressed = true;
 			}
 
-			if(code == KeyEvent.VK_A) {
+			if(code == KeyEvent.VK_LEFT) {
 				leftPressed = true;
 			}
 
-			if(code == KeyEvent.VK_D) {
+			if(code == KeyEvent.VK_RIGHT) {
 				rightPressed = true;
 			}
 			
@@ -91,9 +91,9 @@ public class KeyHandler implements KeyListener {
 				if(gp.gameState == gp.playState) {
 					gp.gameState = gp.pauseState;
 				}
-				else if(gp.gameState == gp.pauseState) {
-					gp.gameState = gp.playState;
-				}
+		//		else if(gp.gameState == gp.pauseState) {
+		//			gp.gameState = gp.playState;
+		//		}
 			}
 			
 			
@@ -105,16 +105,22 @@ public class KeyHandler implements KeyListener {
 			}
 		}
 		
+		if(gp.gameState == gp.pauseState) {
+			if(code == KeyEvent.VK_O) {
+				gp.gameState = gp.playState;
+			}
+		}
+		
 		if(gp.gameState == gp.gameOver) {
 			
-			if(code == KeyEvent.VK_W) {
+			if(code == KeyEvent.VK_UP) {
 				gp.ui.commandNum--;
 				if(gp.ui.commandNum < 0) {
 					gp.ui.commandNum = 1;
 				}
 			}
 			
-			if(code == KeyEvent.VK_S) {
+			if(code == KeyEvent.VK_DOWN) {
 				gp.ui.commandNum++;
 				if(gp.ui.commandNum > 1) {
 					gp.ui.commandNum = 0;
@@ -122,10 +128,13 @@ public class KeyHandler implements KeyListener {
 			}
 			if(code == KeyEvent.VK_ENTER) {
 				if(gp.ui.commandNum == 0) {
+			
 					gp.gameState = gp.playState;
-				//	System.exit(0);
+					gp.retry();
+					gp.ui.playTime +=(double)1/60;
+					gp.playMusic(0);
+
 				}
-				
 				if(gp.ui.commandNum == 1) {
 					System.exit(0);
 				}
@@ -147,19 +156,19 @@ public class KeyHandler implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		int code = e.getKeyCode();
 		
-		if(code == KeyEvent.VK_W) {
+		if(code == KeyEvent.VK_UP) {
 			upPressed = false;
 		}
 		
-		if(code == KeyEvent.VK_S) {
+		if(code == KeyEvent.VK_DOWN) {
 			downPressed = false;
 		}
 
-		if(code == KeyEvent.VK_A) {
+		if(code == KeyEvent.VK_LEFT) {
 			leftPressed = false;
 		}
 
-		if(code == KeyEvent.VK_D) {
+		if(code == KeyEvent.VK_RIGHT) {
 			rightPressed = false;
 		}
 
