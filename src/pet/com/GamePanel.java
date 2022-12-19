@@ -1,12 +1,14 @@
 package pet.com;
 
 import java.awt.Color;
+
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.security.PublicKey;
 
 import javax.swing.JPanel;
+
 
 import entity.Player;
 import object.SuperObject;
@@ -14,12 +16,12 @@ import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
 	//Pengaturan Screen
-	final int originalTileSize = 16;
+	final int originalTileSize = 16;//16
 	final int scale = 3;
 	
 	public final int tileSize = originalTileSize * scale;
-	public final int maxScreenCol = 16;
-	public final int maxScreenRow = 12;
+	public final int maxScreenCol = 16;//16
+	public final int maxScreenRow = 12;//12
 	public final int screenWidth = tileSize * maxScreenCol;
 	public final int screenHeight = tileSize *maxScreenRow;
 	
@@ -32,10 +34,10 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	
 	// FPS
-	int FPS = 60;
+	int FPS = 60;//60
 	
 	TileManager tileM = new TileManager(this);
-	KeyHandler keyH = new KeyHandler();
+	KeyHandler keyH = new KeyHandler(this);
 	
 	//sound
 	Sound music = new Sound();
@@ -47,9 +49,17 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	
 	public Player player = new Player(this, keyH);
-	public SuperObject obj[] = new SuperObject[10];
 	
+	public SuperObject obj[] = new SuperObject[20];
 	
+	//GAME STATE
+	public int gameState;
+	public final int titleState = 0;
+	public final int playState = 1;
+	public final int pauseState = 2;
+	public final int storyGame = 3;
+	public final int gameOver = 4;
+	public final int quizGame = 5;
 	
 
 	public GamePanel() {
@@ -65,13 +75,15 @@ public class GamePanel extends JPanel implements Runnable{
 	public void setupGame() {
 		aSetter.setObject();
 		
-		playMusic(0);
+		// playMusic(0);
+		gameState = titleState;
 	}
 	
 	public void startGameThread() {
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
+	
 	
 	@Override
 	 // public void run() {
@@ -97,7 +109,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//			nextDrawTime += drawInterval;
 	//			
 	//		} catch (InterruptedException e) {
-	//			// TODO Auto-generated catch block
+	//			//  Auto-generated catch block
 	//			e.printStackTrace();
 	//		}
 			
@@ -142,29 +154,55 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	
 	public void update() {
-		player.update();
+		
+		if(gameState == playState) {
+			player.update();
+			
+		}
+		if(gameState == pauseState) {
+			//nothing
+		}
+		if(gameState == gameOver) {
+			
+		}
+		if(gameState == quizGame) {
+			
+		}
+		
+		
 		
 	}
 	
-	public void paintComponent(Graphics g) {
+	  public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		
-		//Tile
-		tileM.draw(g2);
-		
-		//object
-		for(int i = 0; i < obj.length; i++) {
-			if(obj[i] != null) {
-				obj[i].draw(g2, this);
+		//title screen
+		if(gameState == titleState) {
+			ui.draw(g2);
+		}
+		//others
+		else {
+			//Tile
+			tileM.draw(g2);
+			
+			//object
+			for(int i = 0; i < obj.length; i++) {
+				if(obj[i] != null) {
+					obj[i].draw(g2, this);
+				}
 			}
+			
+			//player
+			player.draw(g2);
+	
+			
+			//ui
+			ui.draw(g2);
+			
 		}
 		
-		//player
-		player.draw(g2);
-		
-		//ui
-		ui.draw(g2);
+
 		
 		g2.dispose();
 		
