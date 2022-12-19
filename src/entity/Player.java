@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 
 import pet.com.GamePanel;
 import pet.com.KeyHandler;
+import pet.com.UtilityTool;
 
 public class Player extends Entity {
 	
@@ -26,6 +27,8 @@ public class Player extends Entity {
 	public int hasPet = 0;
 	
 	public Player(GamePanel gp, KeyHandler KeyH) {
+		
+		super(gp);
 		
 		this.gp = gp;
 		this.keyH = KeyH;
@@ -58,23 +61,27 @@ public class Player extends Entity {
 		
 	}
 	public void getPlayerImage() {
+		
+		up1 = setup("/img/belakang_kanan");
+		up2 = setup("/img/belakang_kiri");
+		down1 = setup("/img/depan_kanan");
+		down2 = setup("/img/depan_kiri");
+		left1 = setup("/img/langkah_pendek_kiri");
+		left2 = setup("/img/langkah_panjang_kiri");
+		right1 = setup("/img/langkah pendek kanan");
+		right2 = setup("/img/langkah_panjang_kanan");
+		
 		try {
-			
-			up1 = ImageIO.read(getClass().getResourceAsStream("/img/belakang_kanan.png"));
-			up2 = ImageIO.read(getClass().getResourceAsStream("/img/belakang_kiri.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream("/img/depan_kanan.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream("/img/depan_kiri.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream("/img/langkah_pendek_kiri.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream("/img/langkah_panjang_kiri.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream("/img/langkah pendek kanan.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream("/img/langkah_panjang_kanan.png"));
-			logo = ImageIO.read(getClass().getResourceAsStream("/asset1/logobig2.png"));
+			logo = ImageIO.read(getClass().getResourceAsStream("/img/logobig2.png"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
+
 	
 	public void update() {
 		
@@ -93,11 +100,18 @@ public class Player extends Entity {
 				direction = "right";
 			}
 			
+			//check tile collision
 			collisionOn = false;
 			gp.cChecker.checkTile(this);
 			
+			// check object collisiom
 			int objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
+			
+			//check monster coll
+			int monsterindex = gp.cChecker.checkEntity(this, gp.monster);
+			interactMonster(monsterindex);
+			
 			
 			if(collisionOn == false) {
 				switch(direction) {
@@ -193,6 +207,15 @@ public class Player extends Entity {
 		}
 	}
 	
+	
+	public void interactMonster(int i) {
+		
+		if(i != 999) {
+			ContactObject(i);
+			System.out.println("you monster");
+		}
+	}
+	
 	public void draw(Graphics g2) {
 		
 		// g2.setColor(Color.white);
@@ -235,7 +258,7 @@ public class Player extends Entity {
 			}
 			break;
 		}
-		g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+		g2.drawImage(image, screenX, screenY, null);
 		
 	}
 	
