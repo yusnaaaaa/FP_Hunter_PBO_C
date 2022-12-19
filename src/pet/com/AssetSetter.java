@@ -4,6 +4,7 @@ import object.OBJ_Boots;
 import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Key;
+import object.OBJ_LifeUp;
 import object.OBJ_Pet;
 
 public class AssetSetter {
@@ -62,6 +63,14 @@ public class AssetSetter {
 		gp.obj[11] = new OBJ_Pet();
 		gp.obj[11].worldX = 17 * gp.tileSize;//
 		gp.obj[11].worldY = 42 * gp.tileSize;
+		
+		gp.obj[12] = new OBJ_LifeUp();
+		gp.obj[12].worldX = 27 * gp.tileSize;//
+		gp.obj[12].worldY = 42 * gp.tileSize;
+		
+		gp.obj[13] = new OBJ_LifeUp();
+		gp.obj[13].worldX = 37 * gp.tileSize;//
+		gp.obj[13].worldY = 40 * gp.tileSize;
 		
 		
 	}

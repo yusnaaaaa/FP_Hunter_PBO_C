@@ -35,10 +35,10 @@ public class TileManager {
 		
 		try {
 			tile[0] = new Tile();
-			tile[0].image = ImageIO.read(getClass().getResourceAsStream("/asset1/jalan.png"));
+			tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/jalan 1.png"));
 			
 			tile[1] = new Tile();
-			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/wall.png"));
+			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/rumput.png"));
 			tile[1].collision = true;
 			
 			tile[2] = new Tile();
