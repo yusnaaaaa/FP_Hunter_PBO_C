@@ -39,9 +39,9 @@ public class UI {
 		
 		arial_40 = new Font("Arial", Font.PLAIN, 40);
 		arial_80B = new Font("Arial", Font.BOLD, 80);
-		OBJ_Key key = new OBJ_Key ();
+		OBJ_Key key = new OBJ_Key(gp);
 		keyImage = key.image;
-		OBJ_Pet pet = new OBJ_Pet();
+		OBJ_Pet pet = new OBJ_Pet(gp);
 		petImage = pet.image;
 		
 		//create hud object
@@ -95,7 +95,7 @@ public class UI {
 				 y = gp.screenHeight/2 + (gp.tileSize*2);
 				 g2.drawString(text, x, y);
 			
-				 gp.gameThread = null;
+			gp.gameThread = null;
 		}
 		else {
 			g2.setFont(arial_40);
@@ -152,6 +152,7 @@ public class UI {
 			drawStoryGame();
 		}
 		if(gp.gameState == gp.gameOver) {
+			gp.stopMusic();
 			drawGameOver();
 		}
 		
@@ -361,7 +362,7 @@ public class UI {
 	//		e.printStackTrace();
 	//	}
 		
-		text = "QUIT";
+		text = "NEW GAME";
 		x = getXforCenteredText(text);
 		y += gp.tileSize*3.5;
 	//	g2.drawImage(image1, x-10, y-10, null);
@@ -373,13 +374,13 @@ public class UI {
 
 		
 		
-//		text = "QUIT";
-//		x = getXforCenteredText(text);
-//		y += gp.tileSize;
-//		g2.drawString(text, x, y);
-//		if(commandNum == 1) {
-//			g2.drawString(">", x-gp.tileSize, y);
-//		}
+		text = "QUIT";
+		x = getXforCenteredText(text);
+		y += gp.tileSize;
+		g2.drawString(text, x, y);
+		if(commandNum == 1) {
+			g2.drawString(">", x-gp.tileSize, y);
+		}
 
 	}
 
