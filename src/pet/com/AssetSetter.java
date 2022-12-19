@@ -81,7 +81,7 @@ public class AssetSetter {
 		gp.monster[0] = new Monster(gp);
 		gp.monster[0].worldX = gp.tileSize*21;
 		gp.monster[0].worldY = gp.tileSize*21;
-//		gp.monster[0].speed = 10;
+		gp.monster[0].speed = 10;
 		
 		gp.monster[1] = new Monster(gp);
 		gp.monster[1].worldX = gp.tileSize*20;
@@ -90,23 +90,23 @@ public class AssetSetter {
 		gp.monster[2] = new Monster(gp);
 		gp.monster[2].worldX = gp.tileSize*28;
 		gp.monster[2].worldY = gp.tileSize*42;
-//		gp.monster[2].speed = 8;
+		gp.monster[2].speed = 8;
 //		
 		gp.monster[3] = new Monster(gp);
 		gp.monster[3].worldX = gp.tileSize*21;
 		gp.monster[3].worldY = gp.tileSize*42;
-//		gp.monster[3].speed = 15;
+		gp.monster[3].speed = 12;
 //		
-//		gp.monster[4] = new Monster(gp);
-//		gp.monster[4].worldX = gp.tileSize*24;
-//		gp.monster[4].worldY = gp.tileSize*42;
-//		gp.monster[4].speed = 6;
+		gp.monster[4] = new Monster(gp);
+		gp.monster[4].worldX = gp.tileSize*24;
+		gp.monster[4].worldY = gp.tileSize*42;
+		gp.monster[4].speed = 6;
 //		
-//		gp.monster[5] = new Monster(gp);
-//		gp.monster[5].worldX = gp.tileSize*36;
-//		gp.monster[5].worldY = gp.tileSize*9;
-//		gp.monster[5].speed = 12;
-//		
+		gp.monster[5] = new Monster(gp);
+		gp.monster[5].worldX = gp.tileSize*36;
+		gp.monster[5].worldY = gp.tileSize*9;
+		gp.monster[5].speed = 12;
+		
 //		
 		
 		
