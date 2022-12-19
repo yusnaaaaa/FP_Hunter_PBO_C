@@ -2,6 +2,7 @@ package object;
 
 import java.io.IOException;
 
+
 import javax.imageio.ImageIO;
 
 public class OBJ_Boots extends SuperObject{
@@ -9,7 +10,7 @@ public class OBJ_Boots extends SuperObject{
 	public OBJ_Boots() {
 		name = "Boots";
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/object/boots.png"));
+			image = ImageIO.read(getClass().getResourceAsStream("/asset1/speedup1.png"));
 		}catch (IOException e) {
 			e.printStackTrace();
 		
