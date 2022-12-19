@@ -60,6 +60,19 @@ public class Player extends Entity {
 	   	life = maxLife;
 		
 	}
+	
+	public void setDefaultPosition() {
+		worldX = gp.tileSize * 23;
+		worldY = gp.tileSize * 21;
+		direction = "down";
+	}
+	
+	public void restoreLife() {
+		life = maxLife;
+	}
+	
+	
+	
 	public void getPlayerImage() {
 		
 		up1 = setup("/img/belakang_kanan");
@@ -172,10 +185,21 @@ public class Player extends Entity {
 					gp.playSE(3);
 					gp.obj[i] = null;
 					hasKey--;
-					gp.ui.showMessage("Berhasil buka pintu");
+					gp.ui.showMessage("Success");
 				}
 				else {
-					gp.ui.showMessage("Cari dulu kuncinya!");
+					gp.ui.showMessage("Find the key!");
+				}
+				break;
+			case "DoorFinish" :
+				if(hasPet == 13) {
+					gp.playSE(3);
+					gp.obj[i] = null;
+					hasKey--;
+					gp.ui.showMessage("Success");
+				}
+				else {
+					gp.ui.showMessage("Find the Pet until 13!");
 				}
 				break;
 			case "Boots" :
@@ -193,13 +217,13 @@ public class Player extends Entity {
 				gp.playSE(2);
 				hasPet++;
 				gp.obj[i] = null;
-				gp.ui.showMessage("yeay you found the pet!");
+				gp.ui.showMessage("Yeay you found the pet!");
 				break;
 			case "LifeUp":
 				gp.playSE(2);
 				life++;
 				gp.obj[i] = null;
-				gp.ui.showMessage("Darah bertambah");
+				gp.ui.showMessage("Blood Increases!");
 				break;
 			
 			}
@@ -217,9 +241,6 @@ public class Player extends Entity {
 	
 	public void draw(Graphics g2) {
 		
-		// g2.setColor(Color.white);
-		
-		// g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 		
 		BufferedImage image = null;
 		
