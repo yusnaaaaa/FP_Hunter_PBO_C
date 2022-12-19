@@ -50,8 +50,8 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public Player player = new Player(this, keyH);
 	
-	public SuperObject obj[] = new SuperObject[20];
-	public Entity monster[] = new Entity[20];
+	public SuperObject obj[] = new SuperObject[50];
+	public Entity monster[] = new Entity[50];
 	
 	//GAME STATE
 	public int gameState;
@@ -60,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int pauseState = 2;
 	public final int storyGame = 3;
 	public final int gameOver = 4;
-	public final int quizGame = 5;
+
 	
 
 	public GamePanel() {
@@ -175,9 +175,7 @@ public class GamePanel extends JPanel implements Runnable{
 
 			
 		}
-		if(gameState == quizGame) {
-			
-		}
+		
 		
 		
 		

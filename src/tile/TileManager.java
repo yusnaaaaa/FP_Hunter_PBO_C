@@ -25,11 +25,11 @@ public class TileManager {
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		
-		tile = new Tile[10];
+		tile = new Tile[20];
 		mapTileNum = new int [gp.maxWorldCol][gp.maxWorldRow];
 		
 		getTileImage();
-		loadMap("/maps/newmap1.txt");
+		loadMap("/maps/map1.txt");
 		
 	}
 	
@@ -38,7 +38,26 @@ public class TileManager {
 			setup(0,"jalan new", false);
 			setup(1,"new rumput" , true);
 			setup(2,"rumput", false);
-			setup(3,"pagar rumput new", true);
+			setup(3,"rumput", false);
+			setup(4,"new rumput", true);
+			setup(5,"jalan new", false);
+			
+			setup(6,"jalan01", false);
+			setup(7,"jalan02" ,false);
+			setup(8,"jalan03", false);
+			setup(9,"jalan04", false);
+			setup(10,"jalan05", false);
+			setup(11,"jalan06", false);
+			setup(12,"jalan07", false);
+			setup(13,"jalan08" , false);
+			setup(14,"jalan09", false);
+			setup(15,"jalan10", false);
+			setup(16,"jalan11", false);
+			setup(17,"jalan12", false);
+
+
+			
+			
 			
 						
 		

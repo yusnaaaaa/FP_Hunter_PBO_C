@@ -10,7 +10,7 @@ public class Monster extends Entity {
 		super(gp);
 		
 		direction = "down";
-		speed = 4;
+		speed = 12;
 		
 		getImage();
 	}
@@ -33,21 +33,21 @@ public void getImage() {
 		
 		actionLockCounter++;
 		
-		if(actionLockCounter == 120) {
+		if(actionLockCounter == 55) {
 			
 			Random random = new Random();
-			int i = random.nextInt(100)+1;
+			int i = random.nextInt(40)+1;
 			
-			if(i <= 25) {
+			if(i <= 5) {
 				direction = "up";
 			}
-			if(i > 25 && i <= 50) {
+			if(i > 5 && i <= 10) {
 				direction = "down";
 			}
-			if(i > 50 && i <= 75) {
+			if(i > 10 && i <= 15) {
 				direction = "left";
 			}
-			if(i > 75 && i <= 100) {
+			if(i > 15 && i <= 20) {
 				direction = "right";
 			}
 			
