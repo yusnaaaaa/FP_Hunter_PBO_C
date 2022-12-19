@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -48,7 +49,9 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	
 	public Player player = new Player(this, keyH);
+	
 	public SuperObject obj[] = new SuperObject[20];
+	public Entity monster[] = new Entity[20];
 	
 	//GAME STATE
 	public int gameState;
@@ -56,6 +59,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int playState = 1;
 	public final int pauseState = 2;
 	public final int storyGame = 3;
+	public final int gameOver = 4;
+	public final int quizGame = 5;
 	
 
 	public GamePanel() {
@@ -70,6 +75,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public void setupGame() {
 		aSetter.setObject();
+		aSetter.setMonster();
 		
 		// playMusic(0);
 		gameState = titleState;
@@ -79,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable{
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
+	
 	
 	@Override
 	 // public void run() {
@@ -152,9 +159,24 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		if(gameState == playState) {
 			player.update();
+			
+			//monster
+			for(int i = 0; i < monster.length; i++) {
+				if(monster[i] != null) {
+					monster[i].update();
+				}
+			}
+			
 		}
 		if(gameState == pauseState) {
 			//nothing
+		}
+		if(gameState == gameOver) {
+
+			
+		}
+		if(gameState == quizGame) {
+			
 		}
 		
 		
@@ -165,12 +187,18 @@ public class GamePanel extends JPanel implements Runnable{
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		
+		//debug
+		long drawStart = 0;
+		if(keyH.checkDrawTime == true) {
+			drawStart = System.nanoTime();
+			
+		}
+		
+		
 		//title screen
 		if(gameState == titleState) {
 			ui.draw(g2);
-		}
-		//others
-		else {
+		} else {
 			//Tile
 			tileM.draw(g2);
 			
@@ -181,15 +209,31 @@ public class GamePanel extends JPanel implements Runnable{
 				}
 			}
 			
+			//monster
+			for(int i=0; i<monster.length;i++) {
+				if(monster[i] != null) {
+					monster[i].draw(g2);
+				}
+			}
+			
 			//player
 			player.draw(g2);
+	
 			
 			//ui
 			ui.draw(g2);
 			
 		}
 		
-
+		if(keyH.checkDrawTime == true) {
+			long drawEnd = System.nanoTime();
+			long passed = drawEnd - drawStart;
+			g2.setColor(Color.white);
+			g2.drawString("Draw Time : "+ passed, 10, 400);
+			System.out.println("Draw :"+passed);
+		}
+		
+		
 		
 		g2.dispose();
 		

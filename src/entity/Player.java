@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 
 import pet.com.GamePanel;
 import pet.com.KeyHandler;
+import pet.com.UtilityTool;
 
 public class Player extends Entity {
 	
@@ -23,8 +24,11 @@ public class Player extends Entity {
 	public final int screenX;
 	public final int screenY;
 	public int hasKey = 0;
+	public int hasPet = 0;
 	
 	public Player(GamePanel gp, KeyHandler KeyH) {
+		
+		super(gp);
 		
 		this.gp = gp;
 		this.keyH = KeyH;
@@ -51,26 +55,33 @@ public class Player extends Entity {
 		speed = 4;
 	   	direction = "down";
 	   	
+	   	//Player status nyawa
+	   	maxLife = 6;
+	   	life = maxLife;
 		
 	}
 	public void getPlayerImage() {
+		
+		up1 = setup("/img/belakang_kanan");
+		up2 = setup("/img/belakang_kiri");
+		down1 = setup("/img/depan_kanan");
+		down2 = setup("/img/depan_kiri");
+		left1 = setup("/img/langkah_pendek_kiri");
+		left2 = setup("/img/langkah_panjang_kiri");
+		right1 = setup("/img/langkah pendek kanan");
+		right2 = setup("/img/langkah_panjang_kanan");
+		
 		try {
-			
-			up1 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/belakang_kanan.png"));
-			up2 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/belakang_kiri.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/depan_kanan.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/depan_kiri.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/langkah_pendek_kiri.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/langkah_panjang_kiri.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/langkah pendek kanan.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream("/nwplayer/langkah_panjang_kanan.png"));
-			logo = ImageIO.read(getClass().getResourceAsStream("/asset1/logobig2.png"));
+			logo = ImageIO.read(getClass().getResourceAsStream("/img/logobig2.png"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
+
 	
 	public void update() {
 		
@@ -89,11 +100,18 @@ public class Player extends Entity {
 				direction = "right";
 			}
 			
+			//check tile collision
 			collisionOn = false;
 			gp.cChecker.checkTile(this);
 			
+			// check object collisiom
 			int objIndex = gp.cChecker.checkObject(this, true);
 			pickUpObject(objIndex);
+			
+			//check monster coll
+			int monsterindex = gp.cChecker.checkEntity(this, gp.monster);
+			interactMonster(monsterindex);
+			
 			
 			if(collisionOn == false) {
 				switch(direction) {
@@ -117,6 +135,19 @@ public class Player extends Entity {
 			}
 
 			
+		}
+		
+		//cek object
+		if(cekObject == true) {
+			cekCounterObject++;
+			if(cekCounterObject > 60) {
+				cekObject = false;
+				cekCounterObject = 0;
+			}
+		}
+		
+		if(life == 0) {
+			gp.gameState = gp.gameOver;
 		}
 
 		
@@ -144,6 +175,7 @@ public class Player extends Entity {
 					gp.ui.showMessage("Berhasil buka pintu");
 				}
 				else {
+					ContactObject(i);
 					gp.ui.showMessage("Cari dulu kuncinya!");
 				}
 				break;
@@ -160,10 +192,27 @@ public class Player extends Entity {
 				break;
 			case "Pet" :
 				gp.playSE(2);
+				hasPet++;
 				gp.obj[i] = null;
 				gp.ui.showMessage("yeay you found the pet!");
 				break;
+			case "LifeUp":
+				gp.playSE(2);
+				life++;
+				gp.obj[i] = null;
+				gp.ui.showMessage("Darah bertambah");
+				break;
+			
 			}
+		}
+	}
+	
+	
+	public void interactMonster(int i) {
+		
+		if(i != 999) {
+			ContactObject(i);
+			System.out.println("you monster");
 		}
 	}
 	
@@ -209,10 +258,22 @@ public class Player extends Entity {
 			}
 			break;
 		}
-		g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+		g2.drawImage(image, screenX, screenY, null);
 		
 	}
 	
+	public void ContactObject(int i) {
+		
+		if(i != 999) {
+			
+			if(cekObject == false) {
+				life -= 1;
+				cekObject = true;
+			}
+			
+		}
+		
+	}
 
 
 }

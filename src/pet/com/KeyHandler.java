@@ -7,7 +7,7 @@ public class KeyHandler implements KeyListener {
 	
 	GamePanel gp;
 	public boolean upPressed, downPressed, leftPressed, rightPressed;
-
+	boolean checkDrawTime = false;
 	
 	public KeyHandler(GamePanel gp) {
 		this.gp = gp;
@@ -77,6 +77,16 @@ public class KeyHandler implements KeyListener {
 				rightPressed = true;
 			}
 			
+			//debug
+			if(code == KeyEvent.VK_T) {
+				if(checkDrawTime == false) {
+					checkDrawTime = true;
+				}
+				else if(checkDrawTime == true) {
+					checkDrawTime = false;
+				}
+			}
+			
 			if(code == KeyEvent.VK_P) {
 				if(gp.gameState == gp.playState) {
 					gp.gameState = gp.pauseState;
@@ -93,6 +103,34 @@ public class KeyHandler implements KeyListener {
 			if(code == KeyEvent.VK_BACK_SPACE) {
 				gp.gameState = gp.titleState;
 			}
+		}
+		
+		if(gp.gameState == gp.gameOver) {
+			
+			if(code == KeyEvent.VK_W) {
+				gp.ui.commandNum--;
+				if(gp.ui.commandNum < 0) {
+					gp.ui.commandNum = 1;
+				}
+			}
+			
+			if(code == KeyEvent.VK_S) {
+				gp.ui.commandNum++;
+				if(gp.ui.commandNum > 1) {
+					gp.ui.commandNum = 0;
+				}
+			}
+			if(code == KeyEvent.VK_ENTER) {
+				if(gp.ui.commandNum == 0) {
+					gp.gameState = gp.playState;
+				//	System.exit(0);
+				}
+				
+				if(gp.ui.commandNum == 1) {
+					System.exit(0);
+				}
+			}
+			
 		}
 			
 			

@@ -39,9 +39,9 @@ public class UI {
 		
 		arial_40 = new Font("Arial", Font.PLAIN, 40);
 		arial_80B = new Font("Arial", Font.BOLD, 80);
-		OBJ_Key key = new OBJ_Key ();
+		OBJ_Key key = new OBJ_Key(gp);
 		keyImage = key.image;
-		OBJ_Pet pet = new OBJ_Pet();
+		OBJ_Pet pet = new OBJ_Pet(gp);
 		petImage = pet.image;
 		
 		//create hud object
@@ -95,7 +95,7 @@ public class UI {
 				 y = gp.screenHeight/2 + (gp.tileSize*2);
 				 g2.drawString(text, x, y);
 			
-				 gp.gameThread = null;
+			gp.gameThread = null;
 		}
 		else {
 			g2.setFont(arial_40);
@@ -103,6 +103,8 @@ public class UI {
 			g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
 			g2.drawString("x = "+ gp.player.hasKey, 74, 65);
 			
+			g2.drawImage(petImage, gp.tileSize/2, 80, gp.tileSize, gp.tileSize, null);
+			g2.drawString("x = "+ gp.player.hasPet, 74, 120);
 			
 			
 			
@@ -149,6 +151,10 @@ public class UI {
 		if(gp.gameState == gp.storyGame) {
 			drawStoryGame();
 		}
+		if(gp.gameState == gp.gameOver) {
+			gp.stopMusic();
+			drawGameOver();
+		}
 		
 		
 		
@@ -157,7 +163,6 @@ public class UI {
 	
 	public void drawPlayerLife() {
 		
-		gp.player.life = 3;
 		
 		int x = 540;
 		int y = 75;
@@ -303,16 +308,16 @@ public class UI {
 		
 		//STORY
 		
-//		try {
-//			imagestory = ImageIO.read(getClass().getResourceAsStream("/asset1/komik1.png"));
-//		}catch (IOException e) {
-//			e.printStackTrace();
-//		
-//		}
-//		
-//		x = gp.screenWidth/2 - (gp.tileSize*2)/2;
-//		y += gp.tileSize*2;
-//		g2.drawImage(imagestory, x-75, y-100, gp.tileSize*8, gp.tileSize*8, null);
+		try {
+			imagestory = ImageIO.read(getClass().getResourceAsStream("/asset1/story2.png"));
+		}catch (IOException e) {
+			e.printStackTrace();
+		
+		}
+		
+		x = gp.screenWidth/2 - (gp.tileSize*2)/2;
+		y += gp.tileSize*2;
+		g2.drawImage(imagestory, x-250, y-20, gp.tileSize*12, gp.tileSize*6, null);
 		
 //		g2.setFont(g2.getFont().deriveFont(Font.BOLD,20F));
 //		
@@ -321,6 +326,62 @@ public class UI {
 //		y = 300;
 //		g2.drawString(text, x, y);
 		
+	}
+	
+	public void drawGameOver() {
+
+		
+		g2.setColor(new Color(0,0,0));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		
+		//title nama
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,66F));
+		String text = "GAME OVER";
+		int x = getXforCenteredText(text);
+		int y = gp.tileSize*3;
+		
+		//shadow
+		g2.setColor(Color.gray);
+		g2.drawString(text, x+5, y+5);
+		
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		
+		//image
+	//	x = gp.screenWidth/2 - (gp.tileSize*2)/2;
+	//	y += gp.tileSize*2;
+	//	g2.drawImage(gp.player.logo, x-75, y-100, gp.tileSize*5, gp.tileSize*5, null);
+		
+		//menu
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+		
+		
+	//	try {
+	//		image1 = ImageIO.read(getClass().getResourceAsStream("/asset1/Start.png"));
+	//	} catch (Exception e) {
+	//		e.printStackTrace();
+	//	}
+		
+		text = "NEW GAME";
+		x = getXforCenteredText(text);
+		y += gp.tileSize*3.5;
+	//	g2.drawImage(image1, x-10, y-10, null);
+		g2.drawString(text, x, y);
+		if(commandNum == 0) {
+			g2.drawString(">", x-gp.tileSize, y);
+		}
+		
+
+		
+		
+		text = "QUIT";
+		x = getXforCenteredText(text);
+		y += gp.tileSize;
+		g2.drawString(text, x, y);
+		if(commandNum == 1) {
+			g2.drawString(">", x-gp.tileSize, y);
+		}
+
 	}
 
 }
