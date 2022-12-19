@@ -28,8 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
 	//world settings
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
-//  public final int worldWidth = tileSize * maxWorldCol;
-//	public final int worldHeight = tileSize * maxScreenRow;
+
 	
 	
 	
@@ -88,36 +87,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	
 	@Override
-	 // public void run() {
-	//	double drawInterval = 1000000000/FPS; //0.1666 s
-	//	double nextDrawTime = System.nanoTime() + drawInterval;
-	//	
-	//	while(gameThread != null) {
-	//		update();
-	//		
-	//		repaint();
-	//		
-	//	
-	//		try {
-	//			double remainingTime = nextDrawTime - System.nanoTime();
-	//			remainingTime = remainingTime/1000000;
-	//			
-	//			if(remainingTime < 0) {
-	//				remainingTime = 0;
-	//			}
-	//			
-	//			Thread.sleep((long) remainingTime);
-	//			
-	//			nextDrawTime += drawInterval;
-	//			
-	//		} catch (InterruptedException e) {
-	//			//  Auto-generated catch block
-	//			e.printStackTrace();
-	//		}
-			
-	//	}
-		
-	//}
+	 
 	
 	public void run() {
 		
@@ -172,7 +142,7 @@ public class GamePanel extends JPanel implements Runnable{
 			//nothing
 		}
 		if(gameState == gameOver) {
-
+			stopMusic();
 			
 		}
 		

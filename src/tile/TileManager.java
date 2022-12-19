@@ -36,10 +36,10 @@ public class TileManager {
 	public void getTileImage() {
 			
 			setup(0,"jalan new", false);
-			setup(1,"new rumput" , true);
+			setup(1,"pagar rumput new" , true);
 			setup(2,"rumput", false);
-			setup(3,"rumput", false);
-			setup(4,"new rumput", true);
+			setup(3,"new rumput", false);
+			setup(4,"pagar rumput new", true);
 			setup(5,"jalan new", false);
 			
 			setup(6,"jalan01", false);
@@ -54,6 +54,10 @@ public class TileManager {
 			setup(15,"jalan10", false);
 			setup(16,"jalan11", false);
 			setup(17,"jalan12", false);
+			
+			setup(18, "transisi rumput kiri", true);
+			setup(19, "transisi rumput kanan", true);
+			
 
 
 			
