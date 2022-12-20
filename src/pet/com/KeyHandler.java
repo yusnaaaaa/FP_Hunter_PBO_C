@@ -141,6 +141,18 @@ public class KeyHandler implements KeyListener {
 			}
 			
 		}
+		
+		if(gp.ui.gameFinished == true) {
+			
+			
+			if(code == KeyEvent.VK_SPACE) {
+				System.exit(0);
+			}
+			
+			
+			
+						
+		}
 			
 			
 			

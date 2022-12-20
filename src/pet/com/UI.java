@@ -5,6 +5,7 @@ import java.awt.Color;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -20,10 +21,11 @@ import object.SuperObject;
 public class UI {
 	
 	GamePanel gp;
-	Font arial_40, arial_80B;
+	Font arial_40, arial_80B, arial_30;
 	Graphics2D g2;
 	BufferedImage heart_full, heart_half, heart_blank;
 	BufferedImage keyImage, petImage, imagestory;
+	Image bg;
 	public boolean messageOn = false;
 	public String message = "";
 	int messageCounter = 0;
@@ -39,6 +41,7 @@ public class UI {
 		
 		arial_40 = new Font("Arial", Font.PLAIN, 40);
 		arial_80B = new Font("Arial", Font.BOLD, 80);
+		arial_30 = new Font("Arial", Font.PLAIN, 30);
 		OBJ_Key key = new OBJ_Key(gp);
 		keyImage = key.image;
 		OBJ_Pet pet = new OBJ_Pet(gp);
@@ -71,11 +74,11 @@ public class UI {
 			int x;
 			int y;
 			
-			text = "pet returned to cage";
+			text = "Pet returned to Cage";
 			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
 			 x = gp.screenWidth/2 - textLength/2;
-			 y = gp.screenHeight/2 - (gp.tileSize*3);
-			 g2.drawString(text, x, y);
+		//	 y = gp.screenHeight/2 - (gp.tileSize*3);
+			 g2.drawString(text, x, 250);
 			 
 			 
 			text = "Time :"+dFormat.format(playTime) + "!";
@@ -84,7 +87,16 @@ public class UI {
 			y = gp.screenHeight/2 + (gp.tileSize*4);
 			g2.drawString(text, x, y);
 
-			 
+			
+			 g2.setFont(arial_30);
+			 g2.setColor(Color.WHITE);
+			text = "Press Space to Quit";
+			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+			 x = gp.screenWidth/2 - textLength/2;
+			 y = gp.screenHeight/2 - (gp.tileSize*5);
+			 g2.drawString(text, x, y);
+			
+			
 			 
 			 g2.setFont(arial_80B);
 			 g2.setColor(Color.WHITE);
@@ -196,8 +208,18 @@ public class UI {
 	
 	public void drawTitleScreen() {
 		
-		g2.setColor(new Color(0,0,0));
-		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		try {
+			bg = ImageIO.read(getClass().getResourceAsStream("/object/nwbg.png"));
+		}catch (IOException e) {
+			e.printStackTrace();
+		
+		}
+		
+		g2.drawImage(bg, 0, 0, gp.screenWidth, gp.screenHeight, gp);
+		
+		
+	//	g2.setColor(new Color(0,0,0));
+	//	g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 		
 		//title nama
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,66F));
@@ -270,8 +292,10 @@ public class UI {
 	}
 	
 	public void drawStoryGame() {
-		g2.setColor(new Color(0,0,0));
-		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+	//	g2.setColor(new Color(0,0,0));
+	//	g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		
+		g2.drawImage(bg, 0, 0, gp.screenWidth, gp.screenHeight, gp);
 		
 		//title nama
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,66F));
@@ -291,7 +315,7 @@ public class UI {
 		//STORY
 		
 		try {
-			imagestory = ImageIO.read(getClass().getResourceAsStream("/asset1/story2.png"));
+			imagestory = ImageIO.read(getClass().getResourceAsStream("/img/story3.jpeg"));
 		}catch (IOException e) {
 			e.printStackTrace();
 		
@@ -299,7 +323,7 @@ public class UI {
 		
 		x = gp.screenWidth/2 - (gp.tileSize*2)/2;
 		y += gp.tileSize*2;
-		g2.drawImage(imagestory, x-250, y-20, gp.tileSize*12, gp.tileSize*6, null);
+		g2.drawImage(imagestory, x-250, y-75, gp.tileSize*12, gp.tileSize*6, null);
 		
 		
 	}
@@ -327,7 +351,7 @@ public class UI {
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
 		
 				
-		text = "NEW GAME";
+		text = "RETRY";
 		x = getXforCenteredText(text);
 		y += gp.tileSize*3.5;
 		
